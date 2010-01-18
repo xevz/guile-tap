@@ -41,6 +41,8 @@
 (define (planned-tests num)
  (set! total-tests num))
 
+(define plan planned-tests)
+
 (define ok
  (lambda (result . description)
    (print-total)
@@ -68,6 +70,8 @@
 
 (define (diagnostic message)
  (format #t "~&# ~a" message))
+
+(define diag diagnostic)
 
 (define skip
  (lambda (skip? tests . why)
