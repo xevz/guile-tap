@@ -16,7 +16,7 @@ How?
 	(ok (= 1 1))
 	(ok (not (null? '(21))))
 
-	(diagnostics "Skip some tests...")
+	(diagnostic "Skip some tests...")
     (skip #t
      (list
        '(ok (= 1 1))
@@ -24,10 +24,10 @@ How?
 	 ; Optional reason
 	 "A reason")
 
-	(diagnostics "Bail out...")
+	(diagnostic "Bail out...")
 	(bail-out!)
 
-	(diagnostics "Todo is supported as well...")
+	(diagnostic "Todo is supported as well...")
 	(todo
 	 (list
 	  '(ok (= 1 1)))
