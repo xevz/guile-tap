@@ -16,7 +16,7 @@
 (define (print-total)
  (if (not printed-total)
   (begin
-   (format #t "~&1...~a" total-tests)
+   (format #t "~&1..~a" total-tests)
    (set! printed-total #t))))
 
 (define (incr-counter)
