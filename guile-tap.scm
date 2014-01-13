@@ -1,8 +1,9 @@
 (define-module (guile-tap)
- :export (planned-tests ok bail-out! diagnostic skip todo)
+  #:export (planned-tests ok bail-out! diagnostic skip todo)
+  #:export-syntax (throws?)
 
 ; ~& in format strings
- :use-module (ice-9 format))
+  #:use-module (ice-9 format))
 
 ; Internal variables
 
@@ -16,7 +17,7 @@
 (define (print-total)
  (if (not printed-total)
   (begin
-   (format #t "~&1...~a" total-tests)
+   (format #t "~&1..~a" total-tests)
    (set! printed-total #t))))
 
 (define (incr-counter)
@@ -81,3 +82,7 @@
  (lambda (tests . why)
   (do-directive tests "todo" why)))
 
+(define-syntax-rule (throws? expr)
+  (catch #t
+    (lambda () expr (throw 'test-failed))
+    (lambda (key . args) (case key ((test-failed) #f) (else #t)))))
