@@ -15,13 +15,13 @@
 
 (define-syntax-rule (skip expr . explanation)
   (if (not (null? (quote explanation)))
-    (ok #t (string-append "SKIP " (car (quote explanation))))
-    (ok #t "SKIP")))
+    (ok #t (string-append (car (quote explanation)) " # SKIP"))
+    (ok #t "# SKIP")))
 
 (define-syntax-rule (todo expr . explanation)
   (if (not (null? (quote explanation)))
-    (ok expr (string-append "TODO " (car (quote explanation))))
-    (ok expr "TODO")))
+    (ok expr (string-append (car (quote explanation)) " # TODO"))
+    (ok expr "# TODO")))
 
 (define (diagnostic message) (format #t "# ~a~&" message))
 
