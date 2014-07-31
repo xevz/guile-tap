@@ -1,5 +1,5 @@
 (define-module (guile-tap)
-  #:use-module (ice-9 format) 
+  #:use-module (ice-9 format)
   #:export (planned-tests ok diagnostic)
   #:export-syntax (skip todo throws?))
 (define (planned-tests num) (format #t "1..~a~&~!" num))
