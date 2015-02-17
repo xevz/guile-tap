@@ -18,6 +18,8 @@ make check
 
 It will give some errors to demonstrate the behaviour of the test script.
 
+![See picture for output of 'make check'](guile-tap.png)
+
 ## External links
 
 * [wedesoft/guile-tap](https://github.com/wedesoft/guile-tap/).
