@@ -1,4 +1,4 @@
-# guile-tap
+# guile-tap example
 
 **guile-tap.scm** is a simple drop-in library for unit-testing programs developed with [GNU Guile](http://www.gnu.org/software/guile/). It implements the [Test Anything Protocol (TAP)](https://testanything.org/).
 
