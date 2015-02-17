@@ -2,20 +2,23 @@
 
 **guile-tap.scm** is a simple drop-in library for unit-testing programs developed with [GNU Guile](http://www.gnu.org/software/guile/). It implements the [Test Anything Protocol (TAP)](https://testanything.org/).
 
-```Scheme
-(use-modules (guile-tap))
-(planned-tests 3)
-(ok (= 1 1))
-(ok (not (null? '(21))))
-(diagnostic "Skip some tests...")
-(skip (= 1 1))
-(skip (not (= 1 2)) "A description")
-(diagnostic "Todo is supported as well...")
-(todo (= 1 2) "A note")
-(ok (throws? (/ 1 0)) "Test for exception")
+You can try out the example test script using **guile-tap.scm** as follows:
+
+```Shell
+guile -L . test_example.scm
 ```
+
+You can try out Automake TAP support like this:
+
+```Shell
+make -f Makefile.dist
+./configure
+make check
+```
+
+It will give some errors to demonstrate the behaviour of the test script.
 
 ## External links
 
-* [wedesoft/guile-tap](https://github.com/wedesoft/guile-tap/)).
+* [wedesoft/guile-tap](https://github.com/wedesoft/guile-tap/).
 * [xevz/guile-tap](https://github.com/xevz/guile-tap/).
