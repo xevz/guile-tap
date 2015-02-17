@@ -8,7 +8,7 @@ You can try out the example test script which uses [guile-tap.scm](guile-tap.scm
 guile -L . test_example.scm
 ```
 
-You can try out Automake TAP support like this:
+You can use Automake TAP support like this:
 
 ```Shell
 make -f Makefile.dist
