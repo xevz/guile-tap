@@ -2,7 +2,7 @@
 
 **guile-tap.scm** is a simple drop-in library for unit-testing programs developed with [GNU Guile](http://www.gnu.org/software/guile/). It implements the [Test Anything Protocol (TAP)](https://testanything.org/).
 
-You can try out the example test script using **guile-tap.scm** as follows:
+You can try out the example test script which uses [guile-tap.scm](guile-tap.scm) as follows:
 
 ```Shell
 guile -L . test_example.scm
