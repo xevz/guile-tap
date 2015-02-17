@@ -5,11 +5,6 @@ SCM_LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) $(top_srcdir)/build-aux/tap-dr
 
 TESTS = test_example.scm
 
-EXTRA_DIST = Makefile.dist README.md configure.ac guile-tap.scm $(TESTS)
+EXTRA_DIST = Makefile.dist README.md configure.ac guile-tap.scm guile-tap.png $(TESTS)
 
 CLEANFILES = *~ *.tmp *.log *.trs
-
-DISTCLEANFILES =
-
-MAINTAINERCLEANFILES = Makefile.in
-
