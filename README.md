@@ -22,5 +22,5 @@ It will give some errors to demonstrate the behaviour of the test script.
 
 ## External links
 
-* [wedesoft/guile-tap](https://github.com/wedesoft/guile-tap/).
-* [xevz/guile-tap](https://github.com/xevz/guile-tap/).
+* [wedesoft/guile-tap](https://github.com/wedesoft/guile-tap/)
+* [xevz/guile-tap](https://github.com/xevz/guile-tap/)
