@@ -11,10 +11,10 @@
   (incr-counter)
   (format #t "~a ~a - ~a~&~!" (if result "ok" "not ok") test-counter description))
 
-(define (skip expr description)
+(define-syntax-rule (skip expr description)
   (ok #t (string-append description " # SKIP")))
 
-(define-syntax-rule (todo expr description)
+(define (todo expr description)
   (ok expr (string-append description " # TODO")))
 
 (define-syntax-rule (throws? expr)
