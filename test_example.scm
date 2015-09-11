@@ -1,5 +1,6 @@
 (use-modules (guile-tap))
 (planned-tests 9)
+(diagnostics "Failing test suite for demonstration purposes")
 (ok (eqv? 1 1) "A passing test")
 (ok (not (null? '())) "A failing test")
 (ok (eqv? 1 (call-with-input-file "test.txt" (lambda (port) 1))) "Erroneous test")
