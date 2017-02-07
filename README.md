@@ -1,6 +1,7 @@
 # guile-tap example
 
 **guile-tap.scm** is a simple drop-in library for unit-testing programs developed with [GNU Guile](http://www.gnu.org/software/guile/). It implements the [Test Anything Protocol (TAP)](https://testanything.org/).
+*guile-tap* is very minimalistic. You might prefer to use Mathieu Lirzin's new SRFI-64 Automake TAP integration (see [wedesoft/guile-testing](https://github.com/wedesoft/guile-testing) for an example on how to use it).
 
 You can try out the example test script which uses [guile-tap.scm](guile-tap.scm) as follows:
 
