@@ -1,86 +1,42 @@
 (define-module (guile-tap)
-  #:export (planned-tests ok bail-out! diagnostic skip todo)
-  #:export-syntax (throws?)
+  #:use-module (ice-9 format)
+  #:export (run-tests diagnostics)
+  #:export-syntax (ok skip todo throws?))
 
-; ~& in format strings
-  #:use-module (ice-9 format))
+(define tests '())
 
-; Internal variables
+(define count 0)
 
-(define total-tests 0)
-(define test-counter 0)
-(define printed-total #f)
-(define bailed-out #f)
+(define (run-test test) (test))
 
-; Internal functions
+(define-syntax-rule (schedule prog) (set! tests (cons (lambda () prog) tests)))
 
-(define (print-total)
- (if (not printed-total)
-  (begin
-   (format #t "~&1..~a" total-tests)
-   (set! printed-total #t))))
+(define (run-tests)
+  (format #t "1..~a~&~!" count)
+  (for-each run-test (reverse tests))
+  (set! tests '()))
 
-(define (incr-counter)
-  (set! test-counter (+ test-counter 1)))
+(define (diagnostics msg)
+  (schedule (format #t "# ~a~&" msg)))
 
-(define (print-description description)
- (if (not (null? description))
-   (format #t " - ~a" (car description))))
+(define (print-result result index description)
+  (format #t "~a ~a - ~a~&~!" (if result "ok" "not ok") index description))
 
-(define (do-directive tests directive explanation)
-  (for-each
-	(lambda (e)
-	  (primitive-eval e)
-	  (format #t " # ~a ~a~%"
-			  directive
-			  (if (not (null? explanation))
-					   (car explanation) "")))
-	  tests))
+(define-syntax-rule (ok expr description)
+  (let [(n (1+ count))]
+    (set! count (1+ count))
+    (schedule (catch #t
+                (lambda () (print-result expr n description))
+                (lambda (key function fmt vals . args)
+                  (let* [(msg  (apply format #f fmt vals))
+                         (info (format #f "~a (ERROR: In procedure ~a: ~a)" description function msg))]
+                    (print-result #f n info)))))))
 
-; Exported functions
+(define-syntax-rule (skip expr description)
+  (ok #t (string-append description " # SKIP")))
 
-(define (planned-tests num)
- (set! total-tests num))
-
-(define plan planned-tests)
-
-(define ok
- (lambda (result . description)
-   (print-total)
-
-   (if (not bailed-out)
-	 (begin
-	   (incr-counter)
-
-	   (format #t "~&~a ~a"
-			   (if result
-				 "ok" "not ok")
-			   test-counter)
-
-	   (print-description description)))))
-
-
-(define bail-out!
- (lambda (. why)
-   (set! bailed-out #t)
-
-   (format #t "~&Bail out! ~a~%"
-		   (if (not (null? why))
-			 (car why)
-			 ""))))
-
-(define (diagnostic message)
- (format #t "~&# ~a" message))
-
-(define diag diagnostic)
-
-(define skip
- (lambda (skip? tests . why)
-  (do-directive tests "SKIP" why)))
-
-(define todo
- (lambda (tests . why)
-  (do-directive tests "TODO" why)))
+(define-syntax-rule (todo expr description)
+  (ok expr (string-append description " # TODO")))
 
 (define-syntax-rule (throws? expr)
   (catch #t
